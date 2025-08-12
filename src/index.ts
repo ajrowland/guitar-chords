@@ -11,7 +11,7 @@ program
   .version("1.0.0");
 
 program
-  .argument("<chord>", "Chord name, e.g. C, G, Dm")
+  .argument("<chord>", "Chord name, e.g. C, G")
   .option("--lh", "Render as left-handed chord")
   .action((chordName, options) => {
     const variations = chords[chordName.toUpperCase()];
