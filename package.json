@@ -1,10 +1,10 @@
 {
-  "name": "guitar",
+  "name": "guitar-chords",
   "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "chord": "bun run src/index.ts"
+    "chords": "bun run src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

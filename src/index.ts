@@ -14,7 +14,7 @@ program
   .argument("<chord>", "Chord name, e.g. C, G, Dm")
   .option("--lh", "Render as left-handed chord")
   .action((chordName, options) => {
-    const variations = chords[chordName];
+    const variations = chords[chordName.toUpperCase()];
     if (!variations) {
       console.error(`Chord "${chordName}" not found.`);
       process.exit(1);
