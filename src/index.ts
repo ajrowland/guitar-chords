@@ -11,10 +11,16 @@ program
   .version("1.0.0");
 
 program
-  .argument("<chord>", "Chord name, e.g. C, G")
+  .argument("<chord>", `Chord name, e.g. e, g, csus, "d minor"`)
   .option("--lh", "Render as left-handed chord")
   .action((chordName, options) => {
-    const variations = chords[chordName.toUpperCase()];
+    // partial match chord variations on chord name
+    const variations =
+      chords[chordName.toUpperCase()] ||
+      Object.values(chords)
+        .flat()
+        .filter((v) => v.name.toLowerCase().includes(chordName.toLowerCase()));
+
     if (!variations) {
       console.error(`Chord "${chordName}" not found.`);
       process.exit(1);
