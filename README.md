@@ -41,12 +41,6 @@ E major barre
 
 To display left handed chord diagrams, use the `lh` switch:
 
-```bash
-bun run chords C --lh
-```
-
-Example:
-
 ```
 bun run chords e --lh
 ```
