@@ -69,7 +69,7 @@ E major barre
 You can also pass a CSV string to return a number of chords:
 
 ```
-bun run src/index.ts --lh "gdim, c major, e minor"
+bun run chords --lh "gdim, c major, e minor"
 ```
 
 Returns:
