@@ -23,11 +23,11 @@ Outputs (truncated to 2 chords):
 ```
 E major (open)
     E  A  D  G  B  e
-   O           O  O
-1  |  |  |  ●  |  |
-2  |  ●  ●  |  |  |
-3  |  |  |  |  |  |
-4  |  |  |  |  |  |
+    O           O  O
+ 1  |  |  |  ●  |  |
+ 2  |  ●  ●  |  |  |
+ 3  |  |  |  |  |  |
+ 4  |  |  |  |  |  |
 
 
 E major barre
@@ -50,11 +50,11 @@ Outputs (truncated to 2 chords):
 ```
 E major (open)
     e  B  G  D  A  E
-   O  O           O
-1  |  |  ●  |  |  |
-2  |  |  |  ●  ●  |
-3  |  |  |  |  |  |
-4  |  |  |  |  |  |
+    O  O           O
+ 1  |  |  ●  |  |  |
+ 2  |  |  |  ●  ●  |
+ 3  |  |  |  |  |  |
+ 4  |  |  |  |  |  |
 
 
 E major barre
