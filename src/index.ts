@@ -13,21 +13,27 @@ program
 program
   .argument("<chord>", `Chord name, e.g. e, g, csus, "d minor"`)
   .option("--lh", "Render as left-handed chord")
-  .action((chordName, options) => {
-    // partial match chord variations on chord name
-    const variations =
-      chords[chordName.toUpperCase()] ||
-      Object.values(chords)
-        .flat()
-        .filter((v) => v.name.toLowerCase().includes(chordName.toLowerCase()));
+  .action((chordNames, options) => {
+    chordNames.split(",").forEach((chordName: string) => {
+      chordName = chordName.trim();
 
-    if (!variations) {
-      console.error(`Chord "${chordName}" not found.`);
-      process.exit(1);
-    }
+      // partial match chord variations on chord name
+      const variations =
+        chords[chordName.toUpperCase()] ||
+        Object.values(chords)
+          .flat()
+          .filter((v) =>
+            v.name.toLowerCase().includes(chordName.toLowerCase())
+          );
 
-    variations.forEach((v) => {
-      console.log(renderChord({ chord: v, leftHanded: options.lh }));
+      if (!variations) {
+        console.error(`Chord "${chordName}" not found.`);
+        process.exit(1);
+      }
+
+      variations.forEach((v) => {
+        console.log(renderChord({ chord: v, leftHanded: options.lh }));
+      });
     });
   });
 

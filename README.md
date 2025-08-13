@@ -65,3 +65,57 @@ E major barre
  9  |  |  |  ●  ●  |
 10  |  |  |  |  |  |
 ```
+
+You can also pass a CSV string to return a number of chords:
+
+```
+bun run src/index.ts --lh "gdim, c major, e minor"
+```
+
+Returns:
+
+```
+Gdim (barre)
+    e  B  G  D  A  E
+
+ 3 [================]
+ 4  |  |  |  |  ●  |
+ 5  |  ●  |  ●  |  |
+ 6  |  |  |  |  |  |
+
+
+C major (open)
+    e  B  G  D  A  E
+    O     O        X
+ 1  |  ●  |  |  |  |
+ 2  |  |  |  ●  |  |
+ 3  |  |  |  |  ●  |
+ 4  |  |  |  |  |  |
+
+
+C major barre
+    e  B  G  D  A  E
+
+ 8 [================]
+ 9  |  |  ●  |  |  |
+10  |  |  |  ●  ●  |
+11  |  |  |  |  |  |
+
+
+E minor (open)
+    e  B  G  D  A  E
+    O  O  O        O
+ 2  |  |  |  ●  ●  |
+ 3  |  |  |  |  |  |
+ 4  |  |  |  |  |  |
+ 5  |  |  |  |  |  |
+
+
+E minor barre
+    e  B  G  D  A  E
+
+ 7 [================]
+ 8  |  |  |  |  |  |
+ 9  |  |  |  ●  ●  |
+10  |  |  |  |  |  |
+```
