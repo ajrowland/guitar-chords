@@ -15,6 +15,7 @@ export function renderChord({
   const renderTuning = leftHanded ? [...tuning].reverse() : tuning;
   const renderFrets = leftHanded ? [...chord.frets].reverse() : chord.frets;
   let renderFingers: (number | null)[] | undefined;
+
   if (chord.fingers) {
     renderFingers = leftHanded ? [...chord.fingers].reverse() : chord.fingers;
   }
@@ -30,17 +31,23 @@ export function renderChord({
   const barres: Barre[] = [];
   if (chord.fingers) {
     const fingerGroups: Record<number, number[]> = {};
+
     renderFingers!.forEach((finger, stringIndex) => {
       if (!finger) return;
+
       const fret = renderFrets[stringIndex];
+
       if (typeof fret !== "number") return;
+
       const key = finger * 100 + fret;
+
       fingerGroups[key] ??= [];
       fingerGroups[key].push(stringIndex);
     });
 
     for (const key in fingerGroups) {
       const strings = fingerGroups[key];
+
       if (
         Array.isArray(strings) &&
         strings.length > 1 &&
@@ -49,6 +56,7 @@ export function renderChord({
         const fret = chord.frets[strings[0]] as number;
         const from = Math.min(...strings);
         const to = Math.max(...strings);
+
         barres.push({ fret, from, to });
       }
     }
@@ -65,20 +73,24 @@ export function renderChord({
 
   // Top row: X or O
   output += "  ";
+
   renderFrets.forEach((f) => {
     if (f === "x") output += " X ";
     else if (f === 0) output += " O ";
     else output += "   ";
   });
+
   output += "\n";
 
   // Frets
   for (let fret = startFret; fret < startFret + maxFretsToShow; fret++) {
     output += `${padFret(fret)} `;
+
     renderFrets.forEach((f, stringIndex) => {
       const barre = barres.find(
         (b) => b.fret === fret && stringIndex >= b.from && stringIndex <= b.to
       );
+
       if (barre && stringIndex > barre.from && stringIndex < barre.to) {
         output += "===";
       } else if (barre && stringIndex === barre.from) {
