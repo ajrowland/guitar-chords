@@ -62,17 +62,11 @@ export function renderChord({
     }
   }
 
-  // Alignment calculation
-  const largestFretNumber = startFret + maxFretsToShow - 1;
-  const fretNumWidth = String(largestFretNumber).length;
-  const padFret = (n: number | string) => String(n).padStart(fretNumWidth, " ");
-
   // Dynamic header based on tuning
-  const paddedTuning = renderTuning.map((s) => s.padStart(2, " ")).join(" ");
-  let output = `\n${chord.name}\n   ${paddedTuning}\n`;
+  let output = `\n${chord.name}\n    ${renderTuning.join("  ")}\n`;
 
   // Top row: X or O
-  output += "  ";
+  output += "   ";
 
   renderFrets.forEach((f) => {
     if (f === "x") output += " X ";
@@ -84,7 +78,7 @@ export function renderChord({
 
   // Frets
   for (let fret = startFret; fret < startFret + maxFretsToShow; fret++) {
-    output += `${padFret(fret)} `;
+    output += `${String(fret).padStart(2, " ")} `;
 
     renderFrets.forEach((f, stringIndex) => {
       const barre = barres.find(
