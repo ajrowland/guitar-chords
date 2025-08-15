@@ -12,23 +12,24 @@ export function renderChord({
   const maxFretsToShow = 4;
 
   // Flip arrays for left-handed rendering
-  const renderTuning = leftHanded ? [...tuning].reverse() : tuning;
-  const renderFrets = leftHanded ? [...chord.frets].reverse() : chord.frets;
+  const renderTuning = leftHanded ? tuning.toReversed() : tuning;
+  const renderFrets = leftHanded ? chord.frets.toReversed() : chord.frets;
   let renderFingers: (number | null)[] | undefined;
 
   if (chord.fingers) {
-    renderFingers = leftHanded ? [...chord.fingers].reverse() : chord.fingers;
+    renderFingers = leftHanded ? chord.fingers.toReversed() : chord.fingers;
   }
 
   // Detect starting fret
   const minFret = Math.min(
     ...(renderFrets.filter((f) => typeof f === "number" && f > 0) as number[])
   );
+
   const startFret = minFret > 1 ? minFret : 1;
 
   // Detect barre chords
-  type Barre = { fret: number; from: number; to: number };
-  const barres: Barre[] = [];
+  const barres: Array<{ fret: number; from: number; to: number }> = [];
+
   if (chord.fingers) {
     const fingerGroups: Record<number, number[]> = {};
 
@@ -63,11 +64,9 @@ export function renderChord({
   }
 
   // Dynamic header based on tuning
-  let output = `\n${chord.name}\n    ${renderTuning.join("  ")}\n`;
+  let output = `\n${chord.name}\n    ${renderTuning.join("  ")}\n   `;
 
   // Top row: X or O
-  output += "   ";
-
   renderFrets.forEach((f) => {
     if (f === "x") output += " X ";
     else if (f === 0) output += " O ";
